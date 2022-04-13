@@ -1,0 +1,16 @@
+#hero{
+   background: linear-gradient(rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.6)), url('/images/hero-bg.jpg') no-repeat;
+   background-position: center;
+   background-size: cover;
+   height: 300px;
+}
+#hero h1{
+   font-weight: bold;
+   color: white;
+}
+#hero p {
+   color: #d9d8d8;
+   margin-top:1rem;
+}
+
