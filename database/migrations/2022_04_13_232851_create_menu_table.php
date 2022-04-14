@@ -13,11 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        // 'image',
-        // 'title',
-        // 'description',
-        // 'price',
-        // 'category'
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->timestamps();

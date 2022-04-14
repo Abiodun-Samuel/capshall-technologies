@@ -21,6 +21,15 @@
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime hic, libero veniam dolor quaerat
                         laboriosam recusandae. Deserunt quas dolores aperiam.</p>
                     <p class="mt-5"> <a class="btn btn-primary" href="{{ route('home') }}">Home</a></p>
+
+                    @if (session('status'))
+                        <div class="alert alert-success alert-dismissible fade show mt-3">
+                            <p class="my-0 py-0 text-dark"> {{ session('status') }} </p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -31,18 +40,20 @@
             <h2 class="text-primary fony-weight-bold h5">Cart</h2>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">S/N</th>
-                                    <th scope="col">Menu Image</th>
-                                    <th scope="col">Menu Title</th>
-                                    <th scope="col">Menu Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (count($carts) > 0)
+
+                    @if (count($carts) > 0)
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">S/N</th>
+                                        <th scope="col">Menu Image</th>
+                                        <th scope="col">Menu Title</th>
+                                        <th scope="col">Menu Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     @foreach ($carts as $key => $cart)
                                         <tr>
                                             <th scope="row">{{ $key + 1 }}</th>
@@ -53,16 +64,18 @@
                                             <td>{{ $cart->menu_price }}</td>
                                         </tr>
                                     @endforeach
-                                @else
-                                    <div class="alert alert-success alert-dismissible fade show mt-3">
-                                        <p class="my-0 py-0 text-dark"> Cart is empty </p>
-                                    </div>
-                                @endif
-
-                            </tbody>
-                        </table>
-                    </div>
-
+                                </tbody>
+                            </table>
+                        </div>
+                        <form method="POST" action="{{ route('order.add') }}" enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit" class="btn btn-primary px-5">Order</button>
+                        </form>
+                    @else
+                        <div class="alert alert-danger alert-dismissible fade show mt-3">
+                            <p class="my-0 py-0 text-dark"> Cart is empty </p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
