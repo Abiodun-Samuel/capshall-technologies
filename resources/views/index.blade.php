@@ -14,29 +14,35 @@
 <body class="antialiased">
 
     <section id="hero">
-        <div class="row justify-content-center align-items-center pt-5">
-            <div class="col-lg-8 mt-1 text-center">
-                <h1>Capshall Project</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime hic, libero veniam dolor quaerat
-                    laboriosam recusandae. Deserunt quas dolores aperiam.</p>
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center pt-5">
+                <div class="col-lg-8 mt-1 text-center">
+                    <h1>Capshall Project</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime hic, libero veniam dolor quaerat
+                        laboriosam recusandae. Deserunt quas dolores aperiam.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="menu">
-        <div class="container-fluid">
+    <section id="menu my-5">
+        <div class="container-fluid my-3">
+            <h2 class="text-primary fony-weight-bold h5">Menu</h2>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                @foreach ($menus as $menu)
+                    <div class="col-lg-3 col-md-4 col-sm-6 my-3">
+                        <div class="card shadow-sm border-0">
+                            <img src="{{ asset('images/menu/' . $menu->image) }}" class="card-img-top"
+                                alt="{{ $menu->title }}" height="200" width="auto">
+                            <div class="card-body p-2">
+                                <h5 class="card-title">{{ $menu->title }}</h5>
+                                <p class="card-text">&#8358; {{ $menu->price }}</p>
+                                <button class="btn btn-primary">Select</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>
