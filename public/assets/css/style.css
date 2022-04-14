@@ -3,7 +3,7 @@
       rgba(0, 0, 0, 0.6)), url('/images/hero-bg.jpg') no-repeat;
    background-position: center;
    background-size: cover;
-   height: 300px;
+   min-height: 300px;
 }
 #hero h1{
    font-weight: bold;

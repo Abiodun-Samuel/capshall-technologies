@@ -12,7 +12,6 @@
 </head>
 
 <body class="antialiased">
-
     <section id="hero">
         <div class="container-fluid">
             <div class="row justify-content-center align-items-center pt-5">
@@ -20,6 +19,16 @@
                     <h1>Capshall Project</h1>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime hic, libero veniam dolor quaerat
                         laboriosam recusandae. Deserunt quas dolores aperiam.</p>
+
+                    <p class="mt-5"> <a class="btn btn-primary" href="{{ route('cart') }}">Cart</a></p>
+                    @if (session('status'))
+                        <div class="alert alert-success alert-dismissible fade show mt-3">
+                            <p class="my-0 py-0 text-dark"> {{ session('status') }} </p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -37,7 +46,15 @@
                             <div class="card-body p-2">
                                 <h5 class="card-title">{{ $menu->title }}</h5>
                                 <p class="card-text">&#8358; {{ $menu->price }}</p>
-                                <button class="btn btn-primary">Select</button>
+
+                                <form method="POST" action="{{ route('cart.add') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" value="{{ $menu->id }}" name="id">
+                                    <input type="hidden" value="{{ $menu->title }}" name="name">
+                                    <input type="hidden" value="{{ $menu->price }}" name="price">
+                                    <input type="hidden" value="{{ $menu->image }}" name="image">
+                                    <button class="btn btn-primary">Select</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -48,12 +65,16 @@
     </section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
+    {{-- <script src="{{ asset('assets/js/script.js') }}"></script> --}}
+
 </body>
 
 </html>
