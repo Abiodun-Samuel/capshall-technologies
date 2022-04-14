@@ -4,5 +4,5 @@
 3. Add database user name "capshall"
 4. Add database password "capshall"
 5. Run command "php artisan migrate"
-6. export the "capshall.sql" file into the database.
+6. Import the "capshall.sql" file into the database.
 7. Run command "php artisan serve"
