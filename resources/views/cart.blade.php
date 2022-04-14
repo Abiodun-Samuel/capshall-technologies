@@ -20,7 +20,7 @@
                     <h1>Capshall Project</h1>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime hic, libero veniam dolor quaerat
                         laboriosam recusandae. Deserunt quas dolores aperiam.</p>
-                    <p class="mt-5"> <a href="{{ route('cart') }}">Cart</a></p>
+                    <p class="mt-5"> <a class="btn btn-primary" href="{{ route('home') }}">Home</a></p>
                 </div>
             </div>
         </div>
@@ -28,26 +28,37 @@
 
     <section id="menu my-5">
         <div class="container-fluid my-3">
-            <h2 class="text-primary fony-weight-bold h5">Menu</h2>
+            <h2 class="text-primary fony-weight-bold h5">Cart</h2>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">S/N</th>
+                                    <th scope="col">Menu Image</th>
+                                    <th scope="col">Menu Title</th>
+                                    <th scope="col">Menu Price</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @if (count($carts) > 0)
+                                    @foreach ($carts as $key => $cart)
+                                        <tr>
+                                            <th scope="row">{{ $key + 1 }}</th>
+                                            <td> <img src="{{ asset('images/menu/' . $cart->menu_image) }}"
+                                                    class="" alt="{{ $cart->menu_title }}" height="50"
+                                                    width="auto"></td>
+                                            <td>{{ $cart->menu_title }}</td>
+                                            <td>{{ $cart->menu_price }}</td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <div class="alert alert-success alert-dismissible fade show mt-3">
+                                        <p class="my-0 py-0 text-dark"> Cart is empty </p>
+                                    </div>
+                                @endif
+
                             </tbody>
                         </table>
                     </div>

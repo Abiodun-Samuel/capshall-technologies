@@ -50,10 +50,10 @@
                                 <form method="POST" action="{{ route('cart.add') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" value="{{ $menu->id }}" name="id">
-                                    <input type="hidden" value="{{ $menu->title }}" name="name">
+                                    <input type="hidden" value="{{ $menu->title }}" name="title">
                                     <input type="hidden" value="{{ $menu->price }}" name="price">
                                     <input type="hidden" value="{{ $menu->image }}" name="image">
-                                    <button class="btn btn-primary">Select</button>
+                                    <button type="submit" class="btn btn-primary">Select</button>
                                 </form>
                             </div>
                         </div>
